@@ -1,0 +1,20 @@
+{
+  "name": "friend-finder",
+  "version": "1.0.0",
+  "description": "A friend finder app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acbrent25/friend-finder.git"
+  },
+  "author": "Adam Champagne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acbrent25/friend-finder/issues"
+  },
+  "homepage": "https://github.com/acbrent25/friend-finder#readme"
+}
