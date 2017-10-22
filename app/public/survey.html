@@ -157,20 +157,43 @@
 
 
 <!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 <script>
         
-    $(".submit").on("click", function(){
-        
+    $(".submit").on("click", function(event){
+        event.preventDefault();
         // user data object
         var userData = {
             name: $("#user-name").val(),
             photo: $("#profile-photo").val(),
             totals: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(), ]
-        }
+        };
+
+        console.log(userData);
+
+        $.post("/api/friends", userData,
+        function(data) {
+
+          // If a table is available... tell user they are booked.
+          if (data) {
+            alert("Yay!");
+          }
+
+          // If a table is available... tell user they on the waiting list.
+          else {
+            alert("Sorry");
+          }
+
+          // Clear the form when submitting
+          $("#user-name").val("");
+          $("#profile-photo").val("");
+          
+
+        });
+
 
     });
             
