@@ -152,6 +152,28 @@
     </div>
 </div>
 
+<!-- Modal -->
+
+<div id="friends-results-modal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+  
+	  <!-- Modal content-->
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  <h4 class="modal-title">Your Best Match Is:</h4>
+		</div>
+		<div class="modal-body">
+		  <h2 id="match-name"></h2>
+		  <img id="match-image" src="" alt=""></img>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" id="close-btn">Close</button>
+		</div>
+	  </div>
+  
+	</div>
+  </div>
 
     
 
@@ -169,32 +191,22 @@
         var totalsArr = [];
 
         // user data object
-        var userData = {
+        var newFriend = {
             name: $("#user-name").val(),
             photo: $("#profile-photo").val(),
-            totals: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
+            scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
         };
 
-        console.log(userData);
+        console.log(newFriend);
 
-        $.post("/api/friends", userData,
+        //AJAX post the form data to the friends.js API 
+		$.post("/api/friends", newFriend, 
         function(data) {
-
-          // If a table is available... tell user they are booked.
-          if (data) {
-            alert("Yay!");
-          }
-
-          // If a table is available... tell user they on the waiting list.
-          else {
-            alert("Sorry");
-          }
-
-          // Clear the form when submitting
-          $("#user-name").val("");
-          $("#profile-photo").val("");
-          
-
+            
+            $("#match-name").text(data.name);
+            $("#match-image").attr("src", data.photo);
+            $("#match-image").attr("width", "300px");
+            $("#friends-results-modal").modal("toggle");
         });
 
 
