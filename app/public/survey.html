@@ -165,11 +165,14 @@
         
     $(".submit").on("click", function(event){
         event.preventDefault();
+        // hold user totals
+        var totalsArr = [];
+
         // user data object
         var userData = {
             name: $("#user-name").val(),
             photo: $("#profile-photo").val(),
-            totals: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(), ]
+            totals: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val()]
         };
 
         console.log(userData);
